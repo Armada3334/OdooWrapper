@@ -188,6 +188,8 @@ def get_data(image):
         print("No text detected in the image.")
         sys.exit(1)
     
+    print(ocr_text)
+    
     extracted_data = parse_ocr_text(ocr_text)
     
     return extracted_data
