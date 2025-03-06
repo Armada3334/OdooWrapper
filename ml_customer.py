@@ -8,7 +8,7 @@ from azure.ai.vision.imageanalysis import ImageAnalysisClient
 from azure.ai.vision.imageanalysis.models import VisualFeatures
 from azure.core.credentials import AzureKeyCredential
 
-def parse_ocr_text(ocr_text):
+def parse_customer_ocr_text(ocr_text):
     """
     Parse OCR text from the image into a dictionary with keys:
     name, email, phone, street, street2, city, state, zip_code, vat, website, mobile.
@@ -143,7 +143,7 @@ def parse_ocr_text(ocr_text):
 
     return data
 
-def get_data(image):
+def get_customer_data(image):
     image_path = image
     try:
         with open(image_path, "rb") as f:
@@ -188,9 +188,7 @@ def get_data(image):
         print("No text detected in the image.")
         sys.exit(1)
     
-    print(ocr_text)
-    
-    extracted_data = parse_ocr_text(ocr_text)
+    extracted_data = parse_customer_ocr_text(ocr_text)
     
     return extracted_data
 
@@ -246,7 +244,8 @@ def main():
     print("OCR Text:")
     print(ocr_text)
     
-    extracted_data = parse_ocr_text(ocr_text)
+    
+    extracted_data = parse_customer_ocr_text(ocr_text)
     
     print("Extracted data:")
     print(extracted_data)
